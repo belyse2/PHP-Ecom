@@ -3,6 +3,15 @@
 
 session_start();
 
+
+
+if (isset($_SESSION['auth'])) {
+
+    $_SESSION['message'] = "You are already Registered in";
+    header("Location: index.php");
+    exit();
+}
+
 include ('includes/header.php'); ?>
 
 <div class="py-5">

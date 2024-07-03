@@ -1,6 +1,7 @@
-<?php include('../config/dbconn.php'); ?>
+<?php include ('../config/dbconn.php'); ?>
 <?php
 SESSION_start();
+include ('../functions/myfunctions.php');
 
 if (isset($_POST['register_btn'])) {
 
@@ -42,13 +43,12 @@ if (isset($_POST['register_btn'])) {
         header("Location: ../Register.php");
         exit(0); // Ensure the script stops executing after redirection
     }
-} 
-elseif (isset($_POST['login_btn'])) {
+} elseif (isset($_POST['login_btn'])) {
 
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-    
+
     // Fetch user by email
     $login_query = "SELECT * FROM users WHERE email = '$email'";
     $login_result = mysqli_query($conn, $login_query);
@@ -56,9 +56,6 @@ elseif (isset($_POST['login_btn'])) {
     if ($login_result) {
         if (mysqli_num_rows($login_result) > 0) {
             $user = mysqli_fetch_assoc($login_result);
-
-            // Debug: Check if user data is fetched correctly
-            echo "User fetched: <pre>" . print_r($user, true) . "</pre><br>";
 
             // Verify password
             if (password_verify($password, $user['password'])) {
@@ -68,23 +65,28 @@ elseif (isset($_POST['login_btn'])) {
                     'email' => $user['email']
                 ];
 
-                $_SESSION['message'] = "Login successful";
-                header("Location: ../index.php");
-                exit(0); 
+                $_SESSION['role_as'] = $user['role_as'];
+
+                if ($user['role_as'] == 1) {
+
+                    redirect(" ../Admin/index.php", "Welcome to Admin Dashboard");
+                    exit(0);
+                } else {
+                    redirect("../index.php", "Login successful");
+                    exit(0);
+                }
+
             } else {
-                $_SESSION['message'] = "Wrong credentials";
-                header("Location: ../login.php");
-                exit(0); 
+                redirect("../login.php", "Wrong credentials");
+                exit(0);
             }
         } else {
-            $_SESSION['message'] = "Wrong credentials";
-            header("Location: ../login.php");
-            exit(0); 
+            redirect("../login.php", "Wrong credentials");
+            exit(0);
         }
     } else {
-        $_SESSION['message'] = "Query failed: " . mysqli_error($conn);
-        header("Location: ../login.php");
-        exit(0); 
+        redirect("../login.php", "Query failed");
+        exit(0);
     }
 }
 ?>
