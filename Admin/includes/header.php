@@ -44,6 +44,10 @@ if (session_status() == PHP_SESSION_NONE) {
         border: 1px solid #b3a1a1 !important;
         padding: 8px 10px;
     }
+    .form-select{
+        border: 1px solid #b3a1a1 !important;
+        padding: 8px 10px;
+    }
 </style>
 
 <body class="g-sidenav-show  bg-gray-200">

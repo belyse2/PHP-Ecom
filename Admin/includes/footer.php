@@ -29,9 +29,13 @@
 </footer>
 </main>
 
-<script src="../assets/js/bootstrap.bundle.min.js"></script>
-<script src="../assets/js/perfect-scrollbar.min.js"></script>
-<script src="../assets/js/smooth-scrollbar.min.js"></script>
+<script src="assets/js/jquery-3.7.1.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/perfect-scrollbar.min.js"></script>
+<script src="assets/js/smooth-scrollbar.min.js"></script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="assets/js/custom.js"></script>
 <!-- Alertify JavaScript -->
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.14.0/build/alertify.min.js"></script>
 

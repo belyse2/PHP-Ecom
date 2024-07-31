@@ -9,9 +9,9 @@ include ('includes/header.php');
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>All Categories</h4>
+                    <h4>All Products</h4>
                 </div>
-                <div class="card-body" id="category_table">
+                <div class="card-body " id="products_table">
                     <table class="table table-bordered table-striped">
                         <thead>
                             <th>Id</th>
@@ -24,9 +24,9 @@ include ('includes/header.php');
                         </thead>
                         <tbody>
                             <?php
-                            $category = getAll("categories");
-                            if (mysqli_num_rows($category) > 0) {
-                                foreach ($category as $item) {
+                            $products = getAll("products");
+                            if (mysqli_num_rows($products) > 0) {
+                                foreach ($products as $item) {
                                     ?>
                             <tr>
                                 <td><?= $item['id']; ?></td>
@@ -36,17 +36,17 @@ include ('includes/header.php');
                                         alt="<?= $item['name']; ?>">
                                 </td>
                                 <td><?= $item['status'] == '0' ? "Visible" : "Hidden" ?></td>
-                                <td><a href="edit_category.php?id=<?= $item['id']; ?>" class="btn btn-sm btn-primary">Edit</a>
-                                    <form action="code.php" method="POST">
-                                        <!-- <input type="hidden" name="category_id" value="<?= $item['id']; ?>">
-                                        <button type="submit" class="btn btn-sm btn-danger"
-                                            name="delete_category_btn">Delete</button>
-                                                 
-                                    </form> -->
+                                <td><a href="edit_products.php?id=<?= $item['id']; ?>"
+                                        class="btn btn-sm btn-primary">Edit</a>
                                 </td>
                                 <td>
-                                <button type="button" class="btn btn-sm btn-danger delete_category_btn"
-                                value="<?=$item['id']; ?>">Delete</button>
+                                    <!-- <form action="code.php" method="POST">
+                                        <input type="hidden" name="product_id" value="<$item'id';>">
+                                        <button type="submit" class="btn btn-sm btn-danger"
+                                            name="delete_products_btn">Delete</button>
+                                    </form> -->
+                                    <button type="button" class="btn btn-sm btn-danger delete_products_btn"
+                                        value="<?=$item['id']; ?>">Delete</button>
                                 </td>
                             </tr>
                             <?php
