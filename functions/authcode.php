@@ -61,6 +61,7 @@ if (isset($_POST['register_btn'])) {
             if (password_verify($password, $user['password'])) {
                 $_SESSION['auth'] = true;
                 $_SESSION['auth_user'] = [
+                    'user_id' =>$user['id'],
                     'name' => $user['name'],
                     'email' => $user['email']
                 ];
